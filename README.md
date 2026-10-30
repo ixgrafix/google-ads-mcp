@@ -17,6 +17,17 @@ to provide several
 - `get_resource_metadata`: Retrieves metadata about a Google Ads API resource type, for example "campaign". This is useful to understand the structure of the data and what fields are available for querying.
 - `list_accessible_customers`: Returns ids of customers directly accessible
   by the user authenticating the call.
+- `generate_keyword_historical_metrics`: Returns search volume, competition
+  and top-of-page bids on Google Search for up to 10,000 given keywords.
+- `generate_keyword_ideas`: Generates keyword ideas with the same metrics
+  from up to 20 seed keywords, a page URL, or both, one page per call.
+
+Both keyword tools default to German (`languageConstants/1001`) and Germany
+(`geoTargetConstants/2276`), and require a developer token with Basic or
+Standard access: Explorer access is rejected with "This method is not allowed
+for use with explorer access", and Test access returns no real data. Accounts
+without active ad spend
+receive bucketed volumes (e.g. 1,000 or 10,000) instead of exact figures.
 
 ### Configuring and Namespacing Tools
 
@@ -192,6 +203,8 @@ IDE 2.5.5; `httpUrl` is not accepted by those versions. After authentication,
 both clients should list these namespaced tools:
 
 - `customers_list_accessible_customers`
+- `keywords_generate_keyword_historical_metrics`
+- `keywords_generate_keyword_ideas`
 - `metadata_get_resource_metadata`
 - `search_search`
 
