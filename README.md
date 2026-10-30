@@ -23,9 +23,11 @@ to provide several
   from up to 20 seed keywords, a page URL, or both, one page per call.
 
 Both keyword tools default to German (`languageConstants/1001`) and Germany
-(`geoTargetConstants/2276`), and require a developer token with Basic or
-Standard access: Explorer access is rejected with "This method is not allowed
-for use with explorer access", and Test access returns no real data. Accounts
+(`geoTargetConstants/2276`), and require Basic or Standard
+[access level](https://developers.google.com/google-ads/api/docs/api-policy/access-levels)
+on the Google Cloud project that owns the OAuth client. Explorer access is
+rejected with "This method is not allowed for use with explorer access", and
+Test access reaches test accounts only. Accounts
 without active ad spend
 receive bucketed volumes (e.g. 1,000 or 10,000) instead of exact figures.
 
