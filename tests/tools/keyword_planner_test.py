@@ -81,8 +81,6 @@ class TestGenerateKeywordHistoricalMetrics(unittest.TestCase):
             request={
                 "customer_id": "3421194482",
                 "keywords": ["teppichsockelleiste"],
-                "language": "languageConstants/1001",
-                "geo_target_constants": ["geoTargetConstants/2276"],
                 "include_adult_keywords": False,
                 "keyword_plan_network": "GOOGLE_SEARCH",
             }
@@ -110,7 +108,7 @@ class TestGenerateKeywordHistoricalMetrics(unittest.TestCase):
         )
 
     @patch("ads_mcp.utils.get_googleads_service")
-    def test_accepts_resource_names(self, mock_get_service):
+    def test_targeting_accepts_ids_and_resource_names(self, mock_get_service):
         mock_service = MagicMock()
         mock_get_service.return_value = mock_service
 

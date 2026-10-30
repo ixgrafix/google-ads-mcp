@@ -22,8 +22,8 @@ to provide several
 - `generate_keyword_ideas`: Generates keyword ideas with the same metrics
   from up to 20 seed keywords, a page URL, or both, one page per call.
 
-Both keyword tools default to German (`languageConstants/1001`) and Germany
-(`geoTargetConstants/2276`), and require Basic or Standard
+Both keyword tools target all languages and locations unless `language` and
+`geo_target_constants` are given, and require Basic or Standard
 [access level](https://developers.google.com/google-ads/api/docs/api-policy/access-levels)
 on the Google Cloud project that owns the OAuth client. Explorer access is
 rejected with "This method is not allowed for use with explorer access", and

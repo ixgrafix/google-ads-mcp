@@ -33,17 +33,21 @@ _MAX_SEED_KEYWORDS = 20
 _MAX_PAGE_SIZE = 10_000
 
 
-def _language_resource(language: str) -> str:
-    return (
-        f"languageConstants/{str(language).removeprefix('languageConstants/')}"
-    )
-
-
-def _geo_resources(geo_target_constants: List[str]) -> List[str]:
-    return [
-        f"geoTargetConstants/{str(geo).removeprefix('geoTargetConstants/')}"
-        for geo in geo_target_constants
-    ]
+def _targeting(
+    language: str | None, geo_target_constants: List[str] | None
+) -> Dict[str, Any]:
+    """Returns the language and geo request fields; omitted ones mean all."""
+    targeting: Dict[str, Any] = {}
+    if language:
+        targeting["language"] = (
+            f"languageConstants/{str(language).removeprefix('languageConstants/')}"
+        )
+    if geo_target_constants:
+        targeting["geo_target_constants"] = [
+            f"geoTargetConstants/{str(geo).removeprefix('geoTargetConstants/')}"
+            for geo in geo_target_constants
+        ]
+    return targeting
 
 
 def _micros_to_units(metrics, field: str) -> float | None:
@@ -91,8 +95,8 @@ def _raise_tool_error(ex: GoogleAdsException):
 def generate_keyword_historical_metrics(
     customer_id: str | int,
     keywords: List[str],
-    language: str = "1001",
-    geo_target_constants: List[str] = ["2276"],
+    language: str | None = None,
+    geo_target_constants: List[str] | None = None,
     include_adult_keywords: bool = False,
     login_customer_id: str | int | None = None,
 ) -> List[Dict[str, Any]]:
@@ -108,8 +112,8 @@ def generate_keyword_historical_metrics(
     Args:
         customer_id: The id of the customer, digits only.
         keywords: Up to 10,000 keywords.
-        language: Language constant ID or resource name. Default 1001 (German).
-        geo_target_constants: Geo target constant IDs or resource names. Default 2276 (Germany).
+        language: Language constant ID or resource name, e.g. 1000 (English). All languages if omitted.
+        geo_target_constants: Geo target constant IDs or resource names, e.g. 2840 (United States). All locations if omitted.
         include_adult_keywords: Whether to include adult keywords.
         login_customer_id: Optional manager customer ID to use as the login-customer-id header.
 
@@ -132,8 +136,7 @@ def generate_keyword_historical_metrics(
             request={
                 "customer_id": utils.clean_customer_id(customer_id),
                 "keywords": keywords,
-                "language": _language_resource(language),
-                "geo_target_constants": _geo_resources(geo_target_constants),
+                **_targeting(language, geo_target_constants),
                 "include_adult_keywords": include_adult_keywords,
                 "keyword_plan_network": "GOOGLE_SEARCH",
             }
@@ -156,8 +159,8 @@ def generate_keyword_ideas(
     customer_id: str | int,
     seed_keywords: List[str] | None = None,
     page_url: str | None = None,
-    language: str = "1001",
-    geo_target_constants: List[str] = ["2276"],
+    language: str | None = None,
+    geo_target_constants: List[str] | None = None,
     include_adult_keywords: bool = False,
     page_size: int = 100,
     page_token: str | None = None,
@@ -174,8 +177,8 @@ def generate_keyword_ideas(
         customer_id: The id of the customer, digits only.
         seed_keywords: Up to 20 seed keywords.
         page_url: A page URL to seed ideas from.
-        language: Language constant ID or resource name. Default 1001 (German).
-        geo_target_constants: Geo target constant IDs or resource names. Default 2276 (Germany).
+        language: Language constant ID or resource name, e.g. 1000 (English). All languages if omitted.
+        geo_target_constants: Geo target constant IDs or resource names, e.g. 2840 (United States). All locations if omitted.
         include_adult_keywords: Whether to include adult keywords.
         page_size: Number of ideas per page, at most 10,000.
         page_token: next_page_token from a previous call, to fetch the next page.
@@ -195,8 +198,7 @@ def generate_keyword_ideas(
 
     request: Dict[str, Any] = {
         "customer_id": utils.clean_customer_id(customer_id),
-        "language": _language_resource(language),
-        "geo_target_constants": _geo_resources(geo_target_constants),
+        **_targeting(language, geo_target_constants),
         "include_adult_keywords": include_adult_keywords,
         "keyword_plan_network": "GOOGLE_SEARCH",
         "page_size": page_size,

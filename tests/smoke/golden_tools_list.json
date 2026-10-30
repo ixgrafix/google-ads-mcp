@@ -58,14 +58,19 @@
             "description": "The id of the customer, digits only."
           },
           "geo_target_constants": {
-            "default": [
-              "2276"
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
             ],
-            "description": "Geo target constant IDs or resource names. Default 2276 (Germany).",
-            "items": {
-              "type": "string"
-            },
-            "type": "array"
+            "default": null,
+            "description": "Geo target constant IDs or resource names, e.g. 2840 (United States). All locations if omitted."
           },
           "include_adult_keywords": {
             "default": false,
@@ -80,9 +85,16 @@
             "type": "array"
           },
           "language": {
-            "default": "1001",
-            "description": "Language constant ID or resource name. Default 1001 (German).",
-            "type": "string"
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Language constant ID or resource name, e.g. 1000 (English). All languages if omitted."
           },
           "login_customer_id": {
             "anyOf": [
@@ -150,14 +162,19 @@
             "description": "The id of the customer, digits only."
           },
           "geo_target_constants": {
-            "default": [
-              "2276"
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
             ],
-            "description": "Geo target constant IDs or resource names. Default 2276 (Germany).",
-            "items": {
-              "type": "string"
-            },
-            "type": "array"
+            "default": null,
+            "description": "Geo target constant IDs or resource names, e.g. 2840 (United States). All locations if omitted."
           },
           "include_adult_keywords": {
             "default": false,
@@ -165,9 +182,16 @@
             "type": "boolean"
           },
           "language": {
-            "default": "1001",
-            "description": "Language constant ID or resource name. Default 1001 (German).",
-            "type": "string"
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Language constant ID or resource name, e.g. 1000 (English). All languages if omitted."
           },
           "login_customer_id": {
             "anyOf": [
