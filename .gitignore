@@ -37,3 +37,11 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 .nox/
+.venv/
+
+# Local credentials
+.env
+.env.*
+!.env.example
+.secrets/
+google-ads.yaml
