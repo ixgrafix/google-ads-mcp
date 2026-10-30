@@ -113,7 +113,10 @@ def generate_keyword_historical_metrics(
         customer_id: The id of the customer, digits only.
         keywords: Up to 10,000 keywords.
         language: Language constant ID or resource name, e.g. 1000 (English). All languages if omitted.
+            Look IDs up with `search` on language_constant, e.g. WHERE language_constant.code = 'de'.
         geo_target_constants: Geo target constant IDs or resource names, e.g. 2840 (United States). All locations if omitted.
+            Look IDs up with `search` on geo_target_constant, e.g. WHERE geo_target_constant.country_code = 'DE'
+            AND geo_target_constant.target_type = 'Country', or by geo_target_constant.name for cities and regions.
         include_adult_keywords: Whether to include adult keywords.
         login_customer_id: Optional manager customer ID to use as the login-customer-id header.
 
@@ -178,7 +181,10 @@ def generate_keyword_ideas(
         seed_keywords: Up to 20 seed keywords.
         page_url: A page URL to seed ideas from.
         language: Language constant ID or resource name, e.g. 1000 (English). All languages if omitted.
+            Look IDs up with `search` on language_constant, e.g. WHERE language_constant.code = 'de'.
         geo_target_constants: Geo target constant IDs or resource names, e.g. 2840 (United States). All locations if omitted.
+            Look IDs up with `search` on geo_target_constant, e.g. WHERE geo_target_constant.country_code = 'DE'
+            AND geo_target_constant.target_type = 'Country', or by geo_target_constant.name for cities and regions.
         include_adult_keywords: Whether to include adult keywords.
         page_size: Number of ideas per page, at most 10,000.
         page_token: next_page_token from a previous call, to fetch the next page.

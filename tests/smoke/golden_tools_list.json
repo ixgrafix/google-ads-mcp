@@ -70,7 +70,7 @@
               }
             ],
             "default": null,
-            "description": "Geo target constant IDs or resource names, e.g. 2840 (United States). All locations if omitted."
+            "description": "Geo target constant IDs or resource names, e.g. 2840 (United States). All locations if omitted.\nLook IDs up with `search` on geo_target_constant, e.g. WHERE geo_target_constant.country_code = 'DE'\nAND geo_target_constant.target_type = 'Country', or by geo_target_constant.name for cities and regions."
           },
           "include_adult_keywords": {
             "default": false,
@@ -94,7 +94,7 @@
               }
             ],
             "default": null,
-            "description": "Language constant ID or resource name, e.g. 1000 (English). All languages if omitted."
+            "description": "Language constant ID or resource name, e.g. 1000 (English). All languages if omitted.\nLook IDs up with `search` on language_constant, e.g. WHERE language_constant.code = 'de'."
           },
           "login_customer_id": {
             "anyOf": [
@@ -174,7 +174,7 @@
               }
             ],
             "default": null,
-            "description": "Geo target constant IDs or resource names, e.g. 2840 (United States). All locations if omitted."
+            "description": "Geo target constant IDs or resource names, e.g. 2840 (United States). All locations if omitted.\nLook IDs up with `search` on geo_target_constant, e.g. WHERE geo_target_constant.country_code = 'DE'\nAND geo_target_constant.target_type = 'Country', or by geo_target_constant.name for cities and regions."
           },
           "include_adult_keywords": {
             "default": false,
@@ -191,7 +191,7 @@
               }
             ],
             "default": null,
-            "description": "Language constant ID or resource name, e.g. 1000 (English). All languages if omitted."
+            "description": "Language constant ID or resource name, e.g. 1000 (English). All languages if omitted.\nLook IDs up with `search` on language_constant, e.g. WHERE language_constant.code = 'de'."
           },
           "login_customer_id": {
             "anyOf": [
